@@ -9,11 +9,11 @@ class About extends React.Component {
         return (
             <div id="about">
                 <div className="full-screen">
-                    <img className="profile-picture" src={ProfilePicture} />
+                    <img className="profile-picture" src={ProfilePicture} alt="Naruth Kongurai" />
                     <AboutInformation 
                         topTagline="Hi, my name is Naruth Kongurai"
                         bottomTagline="I love to design and develop front-end web applications and create mobile applications for Android and iOS. Currently I am an undergraduate student at the University of Washington." />
-                    <Updates status="#Javascript30" />
+                    <Updates status="React JS!" />
                 </div>
             </div>
         )

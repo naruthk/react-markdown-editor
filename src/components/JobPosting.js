@@ -18,7 +18,7 @@ class JobPosting extends React.Component {
                         <div className="margin-t-60"></div>
                         <div className="image-job-open"></div>
                         <p className="resume">
-                            <MenuWithIcon url="http://www.naruthk.com/media/Kongurai_Naruth_grad2018.pdf" title="View My Resume" iconName="file-text" />
+                            <MenuWithIcon url="http://www.naruthk.com/media/Kongurai_Naruth_grad2018.pdf" title="View My Resume" showTitle={true} iconName="file-text" />
                         </p>
                     </div>
                 </div>

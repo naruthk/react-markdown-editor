@@ -21,7 +21,7 @@ const Header = () => {
                             <Menu url="mailto:contact@naruthk.com" title="Contact" />
 
                             { /* Resume Link */ }
-                            <a href="http://www.naruthk.com/media/Kongurai_Naruth_grad2018.pdf" title="Resume" target="_blank">
+                            <a href="http://www.naruthk.com/media/Kongurai_Naruth_grad2018.pdf" title="Resume" rel="noopener noreferrer" target="_blank">
                                 <FontAwesome name='file-text' />
                             </a>
                         </div>

@@ -16,7 +16,7 @@ class MoreInformation extends React.Component {
                                 <PromotionBoxMinor title="Programming Abilities" content="I've taken numerous courses, such as iOS Development, Web Programming, Data Structures and Algorithms, Foundation of Informatics, and Java Programming." />
                                 <div className="col-sm-12 col-md-6 col-lg-6">
                                     <p className="focus">App on the App Store!</p>
-                                    <p className="content">I recently published a <a href="http://www.naruthk.com/app/notes/" target="_blank">note-taking</a> mobile application on the App Store. It is available for free for everyone who has an iPhone or iPad.</p>
+                                    <p className="content">I recently published a <a href="http://www.naruthk.com/app/notes/" rel="noopener noreferrer" target="_blank">note-taking</a> mobile application on the App Store. It is available for free for everyone who has an iPhone or iPad.</p>
                                 </div>
                                 <PromotionBoxMinor title="Loves Open-Source" content="I'm a big fan of helping out the community, evidently through my contribution to Free Coding Camp community." />
                             </div>
