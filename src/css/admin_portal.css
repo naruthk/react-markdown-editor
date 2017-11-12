@@ -1,0 +1,21 @@
+#globalWrap_admin {
+  padding: 60px; }
+  #globalWrap_admin button.google, #globalWrap_admin button.github {
+    background-color: #ff7300;
+    border-radius: 20px;
+    padding: 10px 40px;
+    border: 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.15em;
+    margin: 15px;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    -ms-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out; }
+    @media screen and (max-width: 720px) {
+      #globalWrap_admin button.google, #globalWrap_admin button.github {
+        font-size: 10pt; } }
+    #globalWrap_admin button.google:hover, #globalWrap_admin button.github:hover {
+      background-color: #1381ff; }

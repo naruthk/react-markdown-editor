@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import MenuWithIcon from './MenuWithIcon';
 
-const Footer = (props) => {
+const Footer = () => {
     return (
         <footer>
             <div className="container">
@@ -21,19 +20,14 @@ const Footer = (props) => {
                             <div className="margin-t-20"></div>
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-12"> 
-                            <p>&copy; {props.copyrightMessage}</p>
-                            <p><small>{props.bottomMessage}</small></p>
+                            <p>&copy; Naruth Kongurai</p>
+                            <p><small>Built using React. Icons provided by Flat Icon by Smashing Magazine, Freepik, and Vectors Market</small></p>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
     )
-}
-
-Footer.propTypes = {
-  copyrightMessage: PropTypes.string.isRequired,
-  bottomMessage: PropTypes.string.isRequired
 }
 
 export default Footer;

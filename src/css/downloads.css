@@ -1,0 +1,34 @@
+.add-download {
+  padding: 10px;
+  border-radius: 10px; }
+  .add-download input {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-bottom: 3px solid #e4e4e4;
+    margin-bottom: 10px; }
+  .add-download textarea {
+    width: 100%;
+    padding: 10px;
+    border: none; }
+  .add-download input:focus, .add-download input:active, .add-download textarea:focus, .add-download textarea:active {
+    outline: none !important; }
+  .add-download select, .add-download button {
+    border: 2px;
+    height: 40px;
+    padding: 10px 20px 10px 20px;
+    min-width: 100px;
+    margin-right: 20px; }
+  .add-download button {
+    background-color: #3b3b3b;
+    color: #fff; }
+
+.video-list {
+  cursor: pointer; }
+  .video-list a, .video-list a:visited {
+    color: #2c2c2c; }
+  .video-list .icon {
+    margin-right: 10px;
+    font-size: 16pt; }
+  .video-list .title {
+    font-weight: bold; }

@@ -14,6 +14,7 @@ import 'font-awesome/css/font-awesome.css';
 import './behavior';
 
 import Admin from './components/Admin';
+import Videos from './components/Videos';
 import NotFound from './components/NotFound';
 
 const Main = () => {
@@ -22,6 +23,7 @@ const Main = () => {
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/admin" component={Admin} />
+        <Route path="/videos" component={Videos} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

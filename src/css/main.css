@@ -68,6 +68,9 @@ hr {
   padding-right: 20px;
   border-right: 1px solid #ccc; }
 
+.global-wrap {
+  padding: 60px; }
+
 .large-wrapper, .small-wrapper {
   padding: 30px; }
 
