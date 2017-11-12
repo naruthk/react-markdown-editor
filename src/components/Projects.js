@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ProjectItem from './ProjectItem';
 
@@ -43,6 +44,10 @@ class Projects extends React.Component {
             </div>
         )
     }
+}
+
+Projects.propTypes = {
+  title: PropTypes.string.isRequired
 }
 
 export default Projects;

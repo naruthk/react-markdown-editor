@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Contact = (props) => {
     const emailAddress = "mailto:" + props.email;
@@ -18,6 +19,12 @@ const Contact = (props) => {
             </div>
         </div>
     )
+}
+
+Contact.propTypes = {
+  email: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  statement: PropTypes.string.isRequired
 }
 
 export default Contact;

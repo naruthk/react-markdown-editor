@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ProjectItem = (props) => {
     const secondSpan = props.span2;
@@ -14,6 +15,15 @@ const ProjectItem = (props) => {
             </a>
         </div>
     )
+}
+
+ProjectItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  span1: PropTypes.string.isRequired,
+  span2: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
 }
 
 export default ProjectItem;

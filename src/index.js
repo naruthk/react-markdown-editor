@@ -1,5 +1,5 @@
 import React from 'react';
-// import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import ReactDOM from 'react-dom';
 import App from './components/App';
@@ -13,18 +13,20 @@ import 'font-awesome/css/font-awesome.css';
 
 import './behavior';
 
-// import NotFound from './components/NotFound';
+import Admin from './components/Admin';
+import NotFound from './components/NotFound';
 
-// const Root = () => {
-//     return (
-//         <BrowserRouter>
-//             <div>
-//                 <Route exact path="/" component={App} />
-//                 <Route component={NotFound} />
-//             </div>
-//         </BrowserRouter>
-//     )
-// }
+const Main = () => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/admin" component={Admin} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
+  )
+};
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Main />, document.getElementById('root'));
 registerServiceWorker();

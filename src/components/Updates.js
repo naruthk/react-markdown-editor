@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Menu from './Menu';
 import MenuWithIcon from './MenuWithIcon';
@@ -19,7 +20,10 @@ const Updates = (props) => {
             </p>
         </div>
     )
+}
 
+Updates.propTypes = {
+  status: PropTypes.string.isRequired
 }
 
 export default Updates;

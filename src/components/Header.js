@@ -16,7 +16,7 @@ const Header = () => {
                 <div className="col-sm-10 col-md-10 col-lg-10">
                     <div className="social-links">
                         <div className="col-xs-12 col-md-12 col-lg-12">
-                            <Menu   url="https://medium.com/naruth-kongurai/my-name-is-naruth-kongurai-5076325a7e0f" title="About" />
+                            <Menu url="https://medium.com/naruth-kongurai/my-name-is-naruth-kongurai-5076325a7e0f" title="About" />
                             <Menu url="https://medium.com/naruth-kongurai" title="Blog" />
                             <Menu url="mailto:contact@naruthk.com" title="Contact" />
 

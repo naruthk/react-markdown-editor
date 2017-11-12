@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Logo = (props) => {
     return (
@@ -6,6 +7,10 @@ const Logo = (props) => {
             <a href={props.url}>{props.title}</a>
         </div>
     )
+}
+
+Logo.propTypes = {
+  url: PropTypes.string.isRequired
 }
 
 export default Logo;

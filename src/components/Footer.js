@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import MenuWithIcon from './MenuWithIcon';
 
 const Footer = (props) => {
@@ -27,6 +29,11 @@ const Footer = (props) => {
             </div>
         </footer>
     )
+}
+
+Footer.propTypes = {
+  copyrightMessage: PropTypes.string.isRequired,
+  bottomMessage: PropTypes.string.isRequired
 }
 
 export default Footer;

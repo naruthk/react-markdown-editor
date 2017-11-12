@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PromotionBoxMain = (props) => {
     return (
@@ -11,6 +12,11 @@ const PromotionBoxMain = (props) => {
             <div className="margin-t-60"></div>
         </div>
     )
+}
+
+PromotionBoxMain.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
 }
 
 export default PromotionBoxMain;
