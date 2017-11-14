@@ -1,16 +1,16 @@
 import React from 'react';
+import base from '../../base';
 import firebase from 'firebase';
 import PropTypes from 'prop-types';
 
-import './../css/admin_portal.css';
-
 import Header from './Header';
 import Footer from './Footer';
-import Videos from './Videos';
+import Dashboard from '../../components/Dashboard';
 
 import FontAwesome from 'react-fontawesome';
+import glamorous from 'glamorous';
 
-class Admin extends React.Component {
+class Login extends React.Component {
 
   constructor() {
     super();
@@ -21,6 +21,7 @@ class Admin extends React.Component {
     this.state = {
       uid: null
     }
+
   }
 
   authenticate(provider) {
@@ -37,32 +38,49 @@ class Admin extends React.Component {
   }
 
   renderLogin() {
+
+    const NavLoginBox = glamorous.nav({
+      padding: 60
+    })
+
+    const LoginButton = glamorous.button({
+      backgroundColor: '#ff7300',
+      borderRadius: 20,
+      paddingLeft: 40,
+      paddingRight: 40,
+      paddingTop: 10,
+      paddingBottom: 10,
+      border: 0,
+      color: '#fff',
+      textDecorationNone: true,
+      fontSize: 14,
+      margin: 10
+    })
+
     return (
       <div className="container text-center">
-        <nav className="login">
+        <NavLoginBox>
           <h1>Admin Console</h1>
           <p>Please sign in to access portal.</p>
           <div className="margin-t-20"></div>
-          <button className="github" onClick={this.authenticate.bind(this, new firebase.auth.GithubAuthProvider())}>
+          <LoginButton onClick={this.authenticate.bind(this, new firebase.auth.GithubAuthProvider())}>
             Sign in with {<FontAwesome name="github" />}
-          </button>
-          <button className="google" onClick={this.authenticate.bind(this, new firebase.auth.GoogleAuthProvider())}>
+          </LoginButton>
+          <LoginButton onClick={this.authenticate.bind(this, new firebase.auth.GoogleAuthProvider())}>
             Sign in with {<FontAwesome name="google" />}
-          </button>
-        </nav>
+          </LoginButton>
+        </NavLoginBox>
       </div>
     )
   }
 
   render() {
-    const logout = <button className="logout">Logout</button>
+    
     if (!this.state.uid) {
       return (
         <div>
           <Header />
-          <div id="globalWrap_admin">
-            {this.renderLogin()}
-          </div>
+          {this.renderLogin()}
           <Footer />
         </div>
       )
@@ -70,22 +88,16 @@ class Admin extends React.Component {
 
     return (
       <div>
-        <Header />
-        <div id="globalWrap_admin">
-          <Videos uid={this.state.uid} />
-        </div>
-        <div className="container text-right">
-          {logout}
-        </div>
-        <Footer />
+        <Dashboard data={this.state} />
       </div>
     )
   }
+
+
 }
 
-
-Admin.contextTypes = {
+Login.contextTypes = {
   router: PropTypes.object
 };
 
-export default Admin;
+export default Login;

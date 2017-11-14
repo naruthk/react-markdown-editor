@@ -1,12 +1,15 @@
 {
-  "name": "website-naruthk",
+  "name": "website-naruthk-admin-console",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.11.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
-    "react": "^16.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.0",
     "react-fontawesome": "^1.6.1",
@@ -24,10 +27,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "codemirror": "^5.31.0",
     "firebase": "^4.6.2",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.6.0",
     "re-base": "^3.2.0",
+    "react-codemirror": "^1.0.0",
     "react-youtube": "^7.5.0",
     "relative-date": "^1.1.3"
   }

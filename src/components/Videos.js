@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import base from '../base';
 import RelativeDate from 'relative-date';
 
-import AddVideoLink from './AddVideoLink';
+import AddNoteLink from './AddNoteLink';
 import FontAwesome from 'react-fontawesome';
 import VideoPlayer from './VideoPlayer';
 
@@ -82,41 +82,30 @@ class Videos extends Component {
     return (
       
       <div className="App">
-        <div className="container">
-
-          <div className="margin-t-20"></div>
-
-          <div className="row">
-            <div className="col-sm-6 col-md-6 col-lg-6">
-              <h1>Videos</h1>
-            </div>
-            {/* <div className="col-sm-6 col-md-6 col-lg-6 text-right">
-              <a href="#" data-toggle="modal" data-target="#addForm">
-                <FontAwesome name="plus-circle" size="4x" />
-              </a>
-            </div> */}
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <VideoPlayer
+              videos={this.state.videos}
+              currentVideo={this.state.currentVideo}
+              params={this.props.params}
+            />
           </div>
-
-          <VideoPlayer
-            videos={this.state.videos}
-            currentVideo={this.state.currentVideo}
-            params={this.props.params}
-          />
-
-          <div className="global-wrap">
-            <div className="row video-list">
-              {Object.keys(this.state.videos).map(this.renderExistingItems)}
+          <div className="col-xs-12- col-sm-12 col-md-4 col-lg-4">
+            <div className="global-wrap">
+              <div className="row video-list">
+                {Object.keys(this.state.videos).map(this.renderExistingItems)}
+              </div>
             </div>
           </div>
-
-          <div className="margin-t-60"></div>
-          <hr />
-          <h2>Add New Video</h2>
-          <AddVideoLink
-            addItem={this.addItem}
-            videos={this.state.videos}
-          />
         </div>
+          
+        <div className="margin-t-60"></div>
+        <hr />
+        <h2>Add New Video</h2>
+        <AddNoteLink
+          addItem={this.addItem}
+          videos={this.state.videos}
+        />
       </div>
     );
   }

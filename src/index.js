@@ -1,25 +1,21 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-
-import './css/main.css';
 import 'font-awesome/css/font-awesome.css';
+import './css/main.css';
 
-import './behavior';
-
-import Admin from './components/Admin';
-import NotFound from './components/NotFound';
+import Login from './components/core/Login';
+import NotFound from './components/core/NotFound';
 
 const Main = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Admin} />
+        <Route exact path="/" component={Login} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

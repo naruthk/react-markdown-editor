@@ -41,34 +41,9 @@ body {
 .background-white {
     background-color: #fff;
 }
-.background-dark {
-    background-color: #282828;
-}
-.background-orange {
-    background-color: $color-main-typography;
-}
-header, footer {
-    color: white;
-}
 .hidden {
     display: none;
 }
 
-hr {
-    display: block;
-    height: 1px;
-    border-bottom: 1px solid $color-main-typography;
-    hr.light {
-        border-bottom: 1px solid #282828;
-    }
-}
-
 .margin-t-20 { height: 20px; }
 .margin-t-60 { height: 60px; }
-
-.width-50 { width: 80%; margin: auto;}
-
-.div-line-divider {
-    padding-right: 20px; 
-    border-right: 1px solid #ccc;
-}

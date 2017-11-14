@@ -1,0 +1,18 @@
+.CodeMirror {
+  margin-bottom: 30px;
+  font-family: 'Source Sans Pro', sans-serif !important;
+  border: 2px solid #eeeeee; }
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+  border: 2px solid #eeeeee; }
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  margin: 10px;
+  min-height: 300;
+  border: 2px solid #eeeeee; }

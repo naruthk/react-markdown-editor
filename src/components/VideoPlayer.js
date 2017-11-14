@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import YouTube from 'react-youtube';
 
-class VideoPlayer extends Component {
+class VideoPlayer extends React.Component {
 
   render() {
 

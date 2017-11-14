@@ -2,8 +2,6 @@ import React from 'react';
 import Logo from './Logo';
 import Menu from './Menu';
 
-import FontAwesome from 'react-fontawesome';
-
 const Header = () => {
     return (
         <header className="topHeader">
