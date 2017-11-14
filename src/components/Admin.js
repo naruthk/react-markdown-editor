@@ -1,10 +1,12 @@
 import React from 'react';
-import base from '../base';
+import firebase from 'firebase';
+import PropTypes from 'prop-types';
 
 import './../css/admin_portal.css';
 
 import Header from './Header';
 import Footer from './Footer';
+import Videos from './Videos';
 
 import FontAwesome from 'react-fontawesome';
 
@@ -17,18 +19,21 @@ class Admin extends React.Component {
     this.authenticate = this.authenticate.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.state = {
-      uid: null,
-      owner: null
+      uid: null
     }
   }
 
   authenticate(provider) {
-    console.log(`Trying to log in with ${provider}`);
-    base.AuthWithOAuthPopup(provider, this.authHandler);
+    firebase.auth().signInWithPopup(provider)
+      .then(this.authHandler)
+      .catch(err => console.log(err))
   }
 
-  authHandler(err, authData) {
-    console.log(authData);
+  authHandler(authData) {
+    console.log(authData.user.uid);
+    this.setState({
+      uid: authData.user.uid
+    });
   }
 
   renderLogin() {
@@ -38,10 +43,10 @@ class Admin extends React.Component {
           <h1>Admin Console</h1>
           <p>Please sign in to access portal.</p>
           <div className="margin-t-20"></div>
-          <button className="github" onClick={() => this.authenticate('github')}>
+          <button className="github" onClick={this.authenticate.bind(this, new firebase.auth.GithubAuthProvider())}>
             Sign in with {<FontAwesome name="github" />}
           </button>
-          <button className="google" onClick={() => this.authenticate('google')}>
+          <button className="google" onClick={this.authenticate.bind(this, new firebase.auth.GoogleAuthProvider())}>
             Sign in with {<FontAwesome name="google" />}
           </button>
         </nav>
@@ -67,12 +72,20 @@ class Admin extends React.Component {
       <div>
         <Header />
         <div id="globalWrap_admin">
-          {logout}
-          <p>Login successful!</p>
+          <Videos uid={this.state.uid} />
         </div>
+        <div className="container text-right">
+          {logout}
+        </div>
+        <Footer />
       </div>
     )
   }
 }
+
+
+Admin.contextTypes = {
+  router: PropTypes.object
+};
 
 export default Admin;

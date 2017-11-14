@@ -32,3 +32,14 @@
     font-size: 16pt; }
   .video-list .title {
     font-weight: bold; }
+
+.single-video-list {
+  padding: 10px;
+  background-color: #ffffff;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  -ms-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out; }
+  .single-video-list:hover {
+    background-color: #f3f3f3; }

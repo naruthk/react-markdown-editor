@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
 import base from '../base';
+import RelativeDate from 'relative-date';
 
-import Header from './Header';
-import Footer from './Footer';
 import AddVideoLink from './AddVideoLink';
 import FontAwesome from 'react-fontawesome';
 import VideoPlayer from './VideoPlayer';
-import YouTube from 'react-youtube';
 
 import './../css/downloads.css';
 
@@ -27,7 +25,7 @@ class Videos extends Component {
   }
 
   componentWillMount() {
-    this.ref = base.syncState(`videos`, {
+    this.ref = base.syncState(`${this.props.uid}-videos`, {
       context: this,
       state: 'videos'
     });
@@ -56,38 +54,37 @@ class Videos extends Component {
     const item = this.state.videos[key];
 
     return (
-      <div key={key}>
-        <p>
+      <div key={key} className="single-video-list">
           <a onClick={(e) => this.playVideo(item.url)}>
-            <span className="icon">
-              {item.category === 'YouTube' && <FontAwesome name="youtube" />}
-              {item.category === 'Facebook' && <FontAwesome name="facebook-official" />}
-              { (item.category !== 'Facebook' && item.category !== 'YouTube') && <FontAwesome name="file" />}
-            </span> 
-            <span className="title">{item.title}</span>
-          </a> - {item.notes} - <i>Added on: {item.timestamp}</i>
-        </p>
+            <div className="row">
+              <div className="col-sm-10 col-md-10 col-lg-10">
+                <p>
+                  <span className="icon">
+                    {item.category === 'YouTube' && <FontAwesome name="youtube" />}
+                    {item.category === 'Facebook' && <FontAwesome name="facebook-official" />}
+                    { (item.category !== 'Facebook' && item.category !== 'YouTube') && <FontAwesome name="file" />}
+                  </span> 
+                  <span className="title">{item.title} </span>
+                  { item.notes !== "" && <span>- {item.notes}</span>}
+                </p>
+              </div>
+              <div className="col-sm-2 col-md-2 col-lg-2">
+                <p>{RelativeDate(item.timestamp)}</p>
+              </div>
+            </div>
+          </a>
       </div>
     )
   }
 
   render() {
 
-    const videoSettings = {
-      height: '500',
-      width: '100%',
-      playerVars: {
-        autoplay: 1
-      }
-    };
-
     return (
       
       <div className="App">
-        <Header />
         <div className="container">
 
-          <div className="margin-t-60"></div>
+          <div className="margin-t-20"></div>
 
           <div className="row">
             <div className="col-sm-6 col-md-6 col-lg-6">
@@ -120,7 +117,6 @@ class Videos extends Component {
             videos={this.state.videos}
           />
         </div>
-        <Footer />
       </div>
     );
   }

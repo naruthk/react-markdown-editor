@@ -9,27 +9,28 @@ THEME
 */
 
 header {
-    background-color: #FFFFFF;
+    background-color: rgb(44, 44, 44);
+    padding: 10px 0 10px 0;
 
     .header-logo {
         font-size: $font-size + 10;
         line-height: $font-size + 30;
         a, a:visited {
-            color: #555;
+            color: rgb(255, 255, 255);
         }
     }
     @media screen and (max-width: 900px) {
         text-align: center;
     }
     .social-links {
-        padding: 20px 0 10px 0;
+        padding: 15px 0 10px 0;
         text-align: right;
         i {
             font-size: 16pt;
             margin: 10px 20px 10px 0;
         }
         a {
-            color: rgb(78, 78, 78);
+            color: rgb(255, 255, 255);
             margin: 10px 20px 10px 0;
             &:hover {
                 color: $color-main-typography !important;

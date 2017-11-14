@@ -44,3 +44,16 @@
     font-weight: bold;
   }
 }
+
+.single-video-list {
+  padding: 10px;
+  background-color: #ffffff;
+  &:hover {
+    background-color: #f3f3f3;
+  }
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  -ms-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}

@@ -10,9 +10,18 @@ class AddVideoLink extends React.Component {
   createDownloadItem(event) {
     event.preventDefault();
     console.log('Added an item 👍');
+
+    var finalStringForUrl = "";
+
+    if (this.category.value === 'YouTube') {
+      finalStringForUrl = this.url.value.split("?")[1].slice(2, this.url.value.length);
+    } else { // it's Facebook
+      finalStringForUrl = this.url.value;
+    }
+
     const download = {
       title: this.title.value,
-      url: this.url.value,
+      url: finalStringForUrl,
       category: this.category.value,
       notes: this.notes.value,
       timestamp: Date.now()

@@ -11,14 +11,13 @@ class VideoPlayer extends Component {
 
     if (!url || url === 'empty') {
       return (
-        <div class="global-wrap text-center">
+        <div className="global-wrap text-center">
           <FontAwesome name="heart" size='5x'/>
-          <div class="margin-t-20"></div>
+          <div className="margin-t-20"></div>
           <p>No video to show</p>
         </div>
       );
     }
-
 
     const videoSettings = {
       height: '600',
@@ -28,7 +27,7 @@ class VideoPlayer extends Component {
       }
     };
 
-    const youtubeFormedUrl = `https:\/\/www.youtube.com/watch?v=${url}`;
+    const youtubeFormedUrl = `https://www.youtube.com/watch?v=${url}`;
 
     return (
       
