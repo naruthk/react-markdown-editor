@@ -18,8 +18,10 @@ class Login extends React.Component {
     this.renderLogin = this.renderLogin.bind(this);
     this.authenticate = this.authenticate.bind(this);
     this.authHandler = this.authHandler.bind(this);
+    this.sessionLogout = this.sessionLogout.bind(this);
+
     this.state = {
-      uid: null
+      uid: 'KrLCboBJdHaFLHCXsOLXRd5W42F3'
     }
 
   }
@@ -74,12 +76,16 @@ class Login extends React.Component {
     )
   }
 
+  sessionLogout() {
+    
+  }
+
   render() {
     
     if (!this.state.uid) {
       return (
         <div>
-          <Header />
+          <Header session={this.sessionLogout} />
           {this.renderLogin()}
           <Footer />
         </div>

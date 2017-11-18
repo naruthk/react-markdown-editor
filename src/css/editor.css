@@ -1,0 +1,25 @@
+#editor {
+  margin-bottom: 40px;
+  margin-left: 0; }
+
+.ace-textarea {
+  width: 100% !important;
+  line-height: 23px; }
+
+.control label {
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #5e5e5e;
+  font-family: 'Source Sans Pro', sans-serif; }
+
+.optionsStyle {
+  height: 35px;
+  text-transform: uppercase;
+  background-color: #3f3f3f;
+  color: #fff; }
+
+input, textarea {
+  font-family: 'Source Sans Pro', sans-serif !important;
+  color: #3f3f3f; }
+  input:hover, textarea:hover {
+    border: 2px solid #CCC; }

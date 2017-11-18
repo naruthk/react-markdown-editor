@@ -17,7 +17,8 @@ class Dashboard extends React.Component {
     this.addCard = this.addCard.bind(this);
 
     this.state = {
-      cards: {}
+      cards: {},
+      currentKey: ""
     }
 
   }
@@ -42,13 +43,6 @@ class Dashboard extends React.Component {
 
   render() {
 
-    const DashboardWrapper = glamorous.div ({
-      padding: 60,
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'stretch'
-    })
-
     const AddNewCardWrapper = glamorous.div ({
       marginTop: 60,
       backgroundColor: '#f3f3f3'
@@ -57,11 +51,16 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Header />
-        <DashboardWrapper>
-          <CardRenderer cards={this.state.cards} />
-        </DashboardWrapper>
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <CardRenderer cards={this.state.cards} currentKey={this.state.currentKey} />
+          </div>
+          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div><p>VideoPlayer</p></div>
+          </div>
+        </div>
         <AddNewCardWrapper>
-          <AddNewCard addItem={this.addCard} />
+          <AddNewCard addItem={this.addCard} key="ace" />
         </AddNewCardWrapper>
         <Footer />
       </div>
@@ -69,9 +68,5 @@ class Dashboard extends React.Component {
   }
 
 }
-
-Dashboard.contextTypes = {
-  router: PropTypes.object
-};
 
 export default Dashboard;
