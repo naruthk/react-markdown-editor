@@ -60,7 +60,17 @@ class CardRenderer extends React.Component {
     const ControlsWrap = glamorous.div ({
       marginTop: 10,
       paddingTop: 20,
-      borderTop: '2px solid #f9f9f9'
+      borderTop: '2px solid #f9f9f9',
+      textAlign: 'center'
+    })
+
+    const Button = glamorous.button ({
+      backgroundColor: '#f9f9f9',
+      padding: 10,
+      width: '45%',
+      ':hover': {
+        backgroundColor: '#e5e5e5'
+      }
     })
 
     return (
@@ -70,7 +80,7 @@ class CardRenderer extends React.Component {
             <h2>My <strong>Cards</strong></h2>
             {Object.keys(this.props.cards).map(this.renderExistingItems)}
             <ControlsWrap>
-              <button>List View</button> <button>Card View</button>
+              <Button>List View</Button> <Button>Card View</Button>
             </ControlsWrap>
           </div>
           <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">

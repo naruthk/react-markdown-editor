@@ -64,7 +64,7 @@ class Editor extends React.Component {
         <NotesContent>{this.props.cardNotes}</NotesContent>
         <AceEditor
           mode={this.props.cardMode}
-          theme={this.props.cardTheme}
+          theme='monokai'
           className='ace-textarea'
           name="acecode-editor"
           value={this.props.cardCode}
