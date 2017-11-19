@@ -1,41 +1,55 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import FontAwesome from 'react-fontawesome';
-// import glamorous from 'glamorous';
+import glamorous from 'glamorous';
 import RelativeDate from 'relative-date';
-// import Editor from './Editor';
-
-require('codemirror/lib/codemirror.css');
-require('codemirror/mode/markdown/markdown');
-import('../css/new_card_form.css');
+import Editor from './Editor';
 
 class CardRenderer extends React.Component {
 
   constructor() {
     super();
     this.renderExistingItems = this.renderExistingItems.bind(this);
-    this.revealCurrentCardInfo = this.revealCurrentCardInfo.bind(this);
-    // console.log(`${this.props.currentKey}`)
-    // // this.state = {
-    // //   currentKey: this.props.currentKey
-    // // };
+    this.setKeyForCurrentItem = this.setKeyForCurrentItem.bind(this);
+    this.state = {
+      cardCode: "",
+      cardMode: "",
+      cardNotes: "",
+    };
   }
 
-  revealCurrentCardInfo(key) {
-    console.log(key)
-    var currentKey = { ...this.props.currentKey };
-    currentKey = key;
-    this.setState({ currentKey });
+  setKeyForCurrentItem(item) {
+    this.setState({ 
+      cardCode: item.code,
+      cardMode: item.mode,
+      cardTheme: item.theme,
+      cardTitle: item.title,
+      cardVideo: item.video,
+      cardNotes: item.notes
+    });
   }
 
   renderExistingItems(key) {
 
     const item = this.props.cards[key];
 
+    const ListCard = glamorous.p ({
+      padding: 10,
+      margin: 0,
+      backgroundColor: '#f9f9f9',
+      border: '1px solid #f7f7f7',
+      ':hover': {
+        backgroundColor: '#e5e5e5'
+      }
+    })
+
+    if (key === "") {
+      return <div><p>Nothing to show</p></div>
+    }
+
     return (
+
       <div key={key}>
-        <a href="#" onClick={(e) => this.revealCurrentCardInfo(key)}>
-            <p>{item.title} - {item.notes} | {RelativeDate(item.timestamp)}</p>
+        <a href="#" onClick={(e) => this.setKeyForCurrentItem(item)}>
+          <ListCard>{item.title} | {RelativeDate(item.timestamp)}</ListCard>
         </a>
       </div>
     )
@@ -43,11 +57,34 @@ class CardRenderer extends React.Component {
 
   render() {
 
+    const ControlsWrap = glamorous.div ({
+      marginTop: 10,
+      paddingTop: 20,
+      borderTop: '2px solid #f9f9f9'
+    })
+
     return (
       <div>
-        {/* <Editor cards={this.props.cards} currentKey={this.props.currentKey} /> */}
-        { Object.keys(this.props.cards).map(this.renderExistingItems) }
-        {/* <Videos uid={this.props.state.uid} /> */}
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <h2>My <strong>Cards</strong></h2>
+            {Object.keys(this.props.cards).map(this.renderExistingItems)}
+            <ControlsWrap>
+              <button>List View</button> <button>Card View</button>
+            </ControlsWrap>
+          </div>
+          <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <Editor 
+              cardCode={this.state.cardCode} 
+              cardMode={this.state.cardMode} 
+              cardTheme={this.state.cardTheme}
+              cardTitle={this.state.cardTitle}
+              cardVideo={this.state.cardVideo}
+              cardNotes={this.state.cardNotes} 
+            />
+            {/* <Videos uid={this.props.state.uid} /> */}
+          </div>
+        </div>
       </div>
     )
   }

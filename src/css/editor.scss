@@ -25,7 +25,13 @@
 input, textarea {
   font-family: 'Source Sans Pro', sans-serif !important;
   color: #3f3f3f;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 20px 10px 20px;
+  margin-bottom: 10px;
+  border: 2px solid #ebebeb;
+  border-radius: 5px;
   &:hover {
-    border: 2px solid #CCC;
+    border: 2px solid rgb(206, 206, 206);
   }
 }

@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import glamorous from 'glamorous';
 import base from '../base';
-
 import Header from './core/Header';
 import Footer from './core/Footer';
 import CardRenderer from './CardRenderer';
@@ -17,8 +14,7 @@ class Dashboard extends React.Component {
     this.addCard = this.addCard.bind(this);
 
     this.state = {
-      cards: {},
-      currentKey: ""
+      cards: {}
     }
 
   }
@@ -51,13 +47,9 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Header />
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <CardRenderer cards={this.state.cards} currentKey={this.state.currentKey} />
-          </div>
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div><p>VideoPlayer</p></div>
-          </div>
+        <div className="container">
+          <div className="margin-t-20"></div>
+          <CardRenderer cards={this.state.cards}/>
         </div>
         <AddNewCardWrapper>
           <AddNewCard addItem={this.addCard} key="ace" />
