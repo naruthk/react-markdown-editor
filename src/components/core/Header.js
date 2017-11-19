@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
+import Account from './Account';
 import Menu from './Menu';
 
 const Header = () => {
@@ -13,9 +14,11 @@ const Header = () => {
                   <div className="col-sm-10 col-md-10 col-lg-10">
                       <div className="social-links">
                           <div className="col-xs-12 col-md-12 col-lg-12">
-                              <Menu url="#" title="Dashboard" />
-                              <Menu url="#" title="Account" />
-                              <Menu url="#" title="Logout" />
+                            <Menu to="/dashboard">Dashboard</Menu>
+                            {/* <Menu url="#" title="Dashboard" /> */}
+                            {/* <Menu url="#" title="Account" /> */}
+                            <Menu to="/account">Account</Menu>
+                            {/* <Menu url="#" title="Logout" /> */}
                           </div>
                       </div>
                   </div>

@@ -46,12 +46,7 @@ themes.forEach((theme) => {
 })
 
 const defaultValue =
-  `// Notes:
-  
-public static Solution {
-  // Write my solution here
-
-}`;
+  ``;
 
 class AddNewCard extends Component {
 

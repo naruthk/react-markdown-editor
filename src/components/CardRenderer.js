@@ -37,6 +37,7 @@ class CardRenderer extends React.Component {
       paddingRight: 10,
       paddingBottom: 3,
       margin: 0,
+      marginBottom: 5,
       backgroundColor: '#f9f9f9',
       border: '1px solid #f7f7f7',
       ':hover': {
@@ -48,6 +49,8 @@ class CardRenderer extends React.Component {
     const ListCardDescription = glamorous.span ({
       marginLeft: 10,
       marginRight: 10,
+      marginTop: 0,
+      paddingTop: 0,
       paddingLeft: 5,
       paddingRight: 5,
       fontSize: 14,
@@ -59,10 +62,6 @@ class CardRenderer extends React.Component {
       fontSize: 14,
       textTransform: 'uppercase'
     })
-
-    if (key === "") {
-      return <div><p>Nothing to show</p></div>
-    }
 
     return (
 

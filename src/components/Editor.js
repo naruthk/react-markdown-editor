@@ -4,6 +4,7 @@ import glamorous from 'glamorous';
 import Markdown from 'react-markdown';
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
+import AnalyticsIcon from '../img/analytics.png';
 
 const languages = [
   'java',
@@ -60,7 +61,12 @@ class Editor extends React.Component {
     })
 
     if (this.props.cardCode === "" || this.props.cardMode === "") {
-      return <div></div>
+      return (
+        <div className="text-center">
+          <div className="margin-t-60"></div>
+          <img src={AnalyticsIcon} />
+        </div>
+      )
     }
     
     return (
@@ -90,6 +96,7 @@ class Editor extends React.Component {
             showGutter: true,
             highlightActiveLine: true,
             tabSize: 2,
+            maxLines: 10000000,
             width: '100%',
             height: '200px'
           }} />

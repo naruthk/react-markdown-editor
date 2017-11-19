@@ -1,15 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Menu = (props) => {
+class Menu extends React.Component {
+
+  render() {
     return (
-        <a href={props.url} title={props.title} target="_blank" rel="noopener noreferrer">{props.title}</a>
+      <Link {...this.props} />
     )
-}
-
-Menu.propTypes = {
-  url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  }
 }
 
 export default Menu;
