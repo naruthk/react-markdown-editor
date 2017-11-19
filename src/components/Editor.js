@@ -1,6 +1,7 @@
 import React from 'react';
 import AceEditor from 'react-ace';
 import glamorous from 'glamorous';
+import Markdown from 'react-markdown';
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
 
@@ -49,19 +50,28 @@ class Editor extends React.Component {
     const CardTitle = glamorous.h3 ({
       marginTop: 10,
       marginBottom: 10,
-      paddingBottom: 10
+      paddingBottom: 10,
+      borderBottom: '1px solid #CCC'
     })
 
-    const NotesContent = glamorous.p({
+    const NotesContent = glamorous.div({
       marginBottom: 40,
-      paddingLeft: 30,
-      borderLeft: '10px solid #CCC'
+      paddingTop: 20
     })
 
+    if (this.props.cardCode === "" || this.props.cardMode === "") {
+      return <div></div>
+    }
+    
     return (
+
       <div>
         <CardTitle>{this.props.cardTitle}</CardTitle>
-        <NotesContent>{this.props.cardNotes}</NotesContent>
+        <NotesContent>
+          <Markdown source={this.props.cardNotes} />
+        </NotesContent>
+        <p>Link: <i><a href={this.props.cardVideo} title={this.props.cardTitle}>{this.props.cardVideo}</a></i></p>
+        <div className="margin-t-20"></div>
         <AceEditor
           mode={this.props.cardMode}
           theme='monokai'
@@ -73,14 +83,15 @@ class Editor extends React.Component {
             enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
             enableSnippets: true,
+            readOnly: true,
             showLineNumbers: true,
             fontSize: 16,
             showPrintMargin: true,
             showGutter: true,
             highlightActiveLine: true,
             tabSize: 2,
-            minLines: 20,
-            width: '100%'
+            width: '100%',
+            height: '200px'
           }} />
       </div>
     )

@@ -51,6 +51,7 @@ class Dashboard extends React.Component {
           <div className="margin-t-20"></div>
           <CardRenderer cards={this.state.cards}/>
         </div>
+        <div className="margin-t-60"></div>
         <AddNewCardWrapper>
           <AddNewCard addItem={this.addCard} key="ace" />
         </AddNewCardWrapper>

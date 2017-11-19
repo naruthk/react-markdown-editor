@@ -134,7 +134,7 @@ class AddNewCard extends Component {
     })
 
     return (
-      <div className="container">
+      <div id="addCard" className="container">
         <div className="row">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <Heading>Add A New <strong>Code Card</strong></Heading>
@@ -189,7 +189,7 @@ class AddNewCard extends Component {
             <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
               <input ref={(input) => this.title = input} type="text" placeholder="Title"></input>
               <input ref={(input) => this.url = input} type="text" placeholder="URL to source (maybe a YT video)"></input>
-              <textarea ref={(input) => this.notes = input} placeholder="Add some notes about this particular code / selected videos." rows="10"></textarea>
+              <textarea ref={(input) => this.notes = input} placeholder="As markdown text, add some notes about this particular code / selected videos." rows="10"></textarea>
               <Button type="submit">+ Add Item</Button>
             </div>
           </div>
