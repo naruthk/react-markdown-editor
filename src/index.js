@@ -10,6 +10,7 @@ import './css/main.css';
 
 import App from './components/core/App';
 import Login from './components/core/Login';
+import AddNewCard from './components/AddNewCard';
 import NotFound from './components/core/NotFound';
 import Account from './components/core/Account';
 
@@ -19,6 +20,7 @@ const Main = () => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/dashboard" component={Login} />
+        <Route exact path="/add" component={AddNewCard} />
         <Route exact path='/account' component={Account} />
         <Route component={NotFound} />
       </Switch>

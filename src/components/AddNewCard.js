@@ -105,7 +105,7 @@ class AddNewCard extends Component {
   render() {
 
     const Heading = glamorous.h2 ({
-      paddingTop: 40,
+      paddingTop: 0,
       paddingBottom: 10,
       paddingLeft: 0,
       paddingRight: 40

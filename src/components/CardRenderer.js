@@ -23,7 +23,8 @@ class CardRenderer extends React.Component {
       cardTheme: item.theme,
       cardTitle: item.title,
       cardVideo: item.video,
-      cardNotes: item.notes
+      cardNotes: item.notes,
+      cardDate: item.timestamp
     });
   }
 
@@ -60,7 +61,9 @@ class CardRenderer extends React.Component {
     const ListCardCodeMode = glamorous.span ({
       color: '#999',
       fontSize: 14,
-      textTransform: 'uppercase'
+      fontWeight: 300,
+      textTransform: 'uppercase',
+      float: 'right'
     })
 
     const ListCardTitle = glamorous.p ({
@@ -74,11 +77,11 @@ class CardRenderer extends React.Component {
       <div key={key}>
         <a href="#" onClick={(e) => this.setKeyForCurrentItem(item)}>
           <ListCard>
-            <ListCardTitle>{item.title}</ListCardTitle>
-            <p>
+            <ListCardTitle>{item.title} <ListCardCodeMode>{item.mode}</ListCardCodeMode></ListCardTitle>
+            {/* <p>
               <ListCardDescription>{RelativeDate(item.timestamp)}</ListCardDescription>
               <ListCardCodeMode><strong>{item.mode}</strong></ListCardCodeMode>
-            </p>
+            </p> */}
           </ListCard>
         </a>
       </div>
@@ -102,18 +105,19 @@ class CardRenderer extends React.Component {
         backgroundColor: '#e5e5e5'
       }
     })
+    
+    const Aside = glamorous.div ({
+      paddingLeft: 20,
+      borderLeft: '5px solid #CCC'
+    })
+
+    const AddCardButton = glamorous.div ({
+      marginTop: 10
+    })
 
     return (
       <div>
         <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <h2>My <strong>Cards</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><a href="#addCard">Add new</a></small></h2>
-            {Object.keys(this.props.cards).map(this.renderExistingItems)}
-            <ControlsWrap>
-              {/* <Button>List View</Button> <Button>Card View</Button> */}
-              <p>{Object.keys(this.props.cards).length} total</p>
-            </ControlsWrap>
-          </div>
           <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
             <Editor 
               cardCode={this.state.cardCode} 
@@ -122,8 +126,24 @@ class CardRenderer extends React.Component {
               cardTitle={this.state.cardTitle}
               cardVideo={this.state.cardVideo}
               cardNotes={this.state.cardNotes} 
+              cardDate={this.state.cardDate}
             />
             {/* <Videos uid={this.props.state.uid} /> */}
+          </div>
+          <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <Aside>
+              <div className="row">
+                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <h2>My <strong>Cards</strong></h2>
+                </div>
+                <div className="text-right col-xs-6 col-sm-12 col-md-6 col-lg-6">
+                  <AddCardButton><a href="#addCard">Add new</a></AddCardButton>
+                </div>
+              </div>
+              {Object.keys(this.props.cards).map(this.renderExistingItems)}
+              <ControlsWrap>
+              </ControlsWrap>
+            </Aside>
           </div>
         </div>
       </div>
