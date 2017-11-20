@@ -63,12 +63,18 @@ class CardRenderer extends React.Component {
       textTransform: 'uppercase'
     })
 
+    const ListCardTitle = glamorous.p ({
+      fontWeight: 600,
+      lineHeight: '10px',
+      paddingTop: 10
+    })
+
     return (
 
       <div key={key}>
         <a href="#" onClick={(e) => this.setKeyForCurrentItem(item)}>
           <ListCard>
-            <p>{item.title}</p>
+            <ListCardTitle>{item.title}</ListCardTitle>
             <p>
               <ListCardDescription>{RelativeDate(item.timestamp)}</ListCardDescription>
               <ListCardCodeMode><strong>{item.mode}</strong></ListCardCodeMode>
