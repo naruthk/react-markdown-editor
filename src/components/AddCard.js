@@ -48,7 +48,7 @@ themes.forEach((theme) => {
 const defaultValue =
   ``;
 
-class AddNewCard extends Component {
+class AddCard extends Component {
 
   constructor(props) {
     super(props);
@@ -129,9 +129,9 @@ class AddNewCard extends Component {
     })
 
     return (
-      <div id="addCard" className="container">
+      <div id="addCard">
         <div className="row">
-          <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
             <Heading>Add A New <strong>Code Card</strong></Heading>
           </div>
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -194,4 +194,4 @@ class AddNewCard extends Component {
   }
 }
 
-export default AddNewCard;
+export default AddCard;

@@ -1,21 +1,14 @@
 import React from 'react';
 import Logo from './Logo';
-import Account from './Account';
 import Menu from './Menu';
 import glamorous from 'glamorous';
 
 class Header extends React.Component {
   
-  constructor(props) {
-    super(props);
-  }
-  
   render() {
 
-    const LogoWrapper = glamorous.div ({
-      marginLeft: 50
-    })
-    
+    const LogoWrapper = glamorous.div ({ marginLeft: 50 })
+
     return (
       <header className="topHeader">
         <div className="row">
@@ -28,8 +21,7 @@ class Header extends React.Component {
                 <div className="social-links">
                     <div className="col-xs-12 col-md-12 col-lg-12">
                       <Menu to="/dashboard">Dashboard</Menu>
-                      {/* <Menu to="/" title="Add Card">Add Card</Menu> */}
-                      <a href="#" onClick={this.props.handleOpenModal}>Add Card</a>
+                      <a onClick={this.props.handleOpenModal}>Add Card</a>
                       <Menu to="/account">Account</Menu>
                     </div>
                 </div>

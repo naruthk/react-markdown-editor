@@ -1,18 +1,26 @@
+// Core
 import React from 'react';
-import glamorous from 'glamorous';
-import base from '../base';
+import base from '../base'; 
+
+// Components
 import Header from './core/Header';
 import Footer from './core/Footer';
-import CardRenderer from './CardRenderer';
-import AddNewCard from './AddNewCard';
+import CardsManagement from './CardsManagement';
+import AddCard from './AddCard';
+
+// Additional
 import ReactModal from 'react-modal';
+import glamorous from 'glamorous';
 import FontAwesome from 'react-fontawesome';
-import '../css/main.css';
 
 class Dashboard extends React.Component {
 
   constructor() {
     super();
+
+    // Two states are required: 1) to keep track of all created cards
+    // and 2) to check whether the user has clicked on the "Add Card" link
+    // in the navigation bar
     this.state = {
       cards: {},
       showModal: false
@@ -33,6 +41,7 @@ class Dashboard extends React.Component {
     base.removeBinding(this.ref);
   }
 
+  // Add a new card into the current state through props in child components
   addCard(item) {
     const cards = { ...this.state.cards };
     const timestamp = Date.now();
@@ -40,46 +49,31 @@ class Dashboard extends React.Component {
     this.setState({ cards });
   }
 
-  handleOpenModal() {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
-  }
+  // Toggle ReactModal for Adding a New Card
+  handleOpenModal() { this.setState({ showModal: true }); }
+  handleCloseModal() { this.setState({ showModal: false }); }
 
   render() {
 
-    const AddNewCardWrapper = glamorous.div ({
-      marginTop: 60,
-      backgroundColor: '#f3f3f3'
+    const WrapperAddNewCard = glamorous.div ({
+      margin: 20, backgroundColor: '#f3f3f3'
     })
 
     const CloseButton = glamorous.button ({
-      backgroundColor: '#999',
-      padding: 10,
-      margin: 10,
-      color: '#FFF',
-      ':hover': {
-        backgroundColor: '#333'
-      }
+      backgroundColor: '#999', padding: 10, margin: 10,
+      color: '#FFF', ':hover': { backgroundColor: '#333' }
     })
 
-    let CardRender = null;
-    if (this.state.showModal) {
-      CardRender = <div></div>
-    } else {
-      CardRender = <CardRenderer cards={this.state.cards} />
-    }
     return (
-
       <div>
         <Header handleOpenModal={this.handleOpenModal} />
         <div id="dashboard">
-          <div className="margin-t-20"></div>
-          {CardRender}
+          {/* Hide the dashboard if the user toggles open the Add New Card modal */}
+          {this.state.showModal ? <div></div> : <CardsManagement cards={this.state.cards} />}
         </div>
-        <div className="margin-t-60"></div>
+        <Footer />
+        
+        {/* ReactModal for Adding a New Card */}
         <ReactModal 
             isOpen={this.state.showModal}
             contentLabel="Add new card"
@@ -92,16 +86,14 @@ class Dashboard extends React.Component {
                 backgroundColor: '#f3f3f3'
               }
             }} >
-          <AddNewCardWrapper>
-            <AddNewCard addItem={this.addCard} key="ace" />
-          </AddNewCardWrapper>
-          <div className="container text-center">
-            <div className="margin-t-60">
-              <CloseButton onClick={this.handleCloseModal}><FontAwesome name="window-close" /> Close</CloseButton>
-            </div>
+          {/* Inside the React Modal is the actual AddNewCard component */}
+          <WrapperAddNewCard><AddCard addItem={this.addCard} /></WrapperAddNewCard>
+          <div className="text-right margin-t-20">
+            <CloseButton onClick={this.handleCloseModal}>
+            <FontAwesome name="window-close" /> Close</CloseButton>
           </div>
         </ReactModal>
-        <Footer />
+        
       </div>
     )
   }

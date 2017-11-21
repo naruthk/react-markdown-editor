@@ -10,7 +10,7 @@ class NotFound extends React.Component {
                 <div className="container text-center">              
                   <div className="margin-t-60"></div>
                     <h2><b>Error</b> retreiving content</h2>
-                    <p>Cannot find resource.</p>
+                    <p>Cannot find the resource you are looking for.</p>
                     <div className="margin-t-20"></div>
                 </div>
                 <Footer copyrightMessage="2017 Naruth Kongurai" bottomMessage="" />

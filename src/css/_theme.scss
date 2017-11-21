@@ -1,3 +1,7 @@
+.container {
+  max-width: 90% !important;
+}
+
 header {
     background-color: rgb(44, 44, 44);
     padding: 10px 0 10px 0;
@@ -83,4 +87,5 @@ footer {
 
 #dashboard {
   margin: 50px;
+  width: 90%;
 }

@@ -8,6 +8,11 @@
   line-height: 23px;
 }
 
+#acecode-editor {
+  width: 100%;
+  min-height: 600px !important;
+}
+
 .control label {
   margin-right: 10px;
   margin-left: 10px;
@@ -33,5 +38,14 @@ input, textarea {
   border-radius: 5px;
   &:hover {
     border: 2px solid rgb(206, 206, 206);
+  }
+}
+
+#markdown-render {
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 20px;
+  }
+  ul {
+    margin-bottom: 20px;
   }
 }

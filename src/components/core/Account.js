@@ -1,5 +1,4 @@
 import React from 'react';
-import glamorous from 'glamorous';
 import Header from './Header';
 import Footer from './Footer';
 
