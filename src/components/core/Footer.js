@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="margin-t-20">
                     <div className="row text-center">
                         <div className="col-sm-12 col-md-12 col-lg-12"> 
-                            <p>&copy; Naruth Kongurai</p>
+                            <p>&copy; 2017 Version 1.0<br/>Developed and operated by Naruth Kongurai.</p>
                         </div>
                     </div>
                 </div>

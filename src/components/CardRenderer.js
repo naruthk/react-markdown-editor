@@ -1,6 +1,5 @@
 import React from 'react';
 import glamorous from 'glamorous';
-import RelativeDate from 'relative-date';
 import Editor from './Editor';
 
 class CardRenderer extends React.Component {
@@ -42,8 +41,7 @@ class CardRenderer extends React.Component {
       backgroundColor: '#f9f9f9',
       border: '1px solid #f7f7f7',
       ':hover': {
-        backgroundColor: '#e5e5e5',
-        fontWeight: '500'
+        backgroundColor: '#e5e5e5'
       }
     })
     
@@ -63,13 +61,17 @@ class CardRenderer extends React.Component {
       fontSize: 14,
       fontWeight: 300,
       textTransform: 'uppercase',
-      float: 'right'
+      float: 'right',
+      marginLeft: 10
     })
 
     const ListCardTitle = glamorous.p ({
-      fontWeight: 600,
+      fontWeight: 300,
       lineHeight: '10px',
-      paddingTop: 10
+      paddingTop: 10,
+      ':hover': {
+        fontWeight: '600'
+      }
     })
 
     return (
@@ -78,10 +80,6 @@ class CardRenderer extends React.Component {
         <a href="#" onClick={(e) => this.setKeyForCurrentItem(item)}>
           <ListCard>
             <ListCardTitle>{item.title} <ListCardCodeMode>{item.mode}</ListCardCodeMode></ListCardTitle>
-            {/* <p>
-              <ListCardDescription>{RelativeDate(item.timestamp)}</ListCardDescription>
-              <ListCardCodeMode><strong>{item.mode}</strong></ListCardCodeMode>
-            </p> */}
           </ListCard>
         </a>
       </div>
@@ -132,14 +130,7 @@ class CardRenderer extends React.Component {
           </div>
           <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <Aside>
-              <div className="row">
-                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                  <h2>My <strong>Cards</strong></h2>
-                </div>
-                <div className="text-right col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                  <AddCardButton><a href="#addCard">Add new</a></AddCardButton>
-                </div>
-              </div>
+              <h2>My <strong>Cards</strong></h2>
               {Object.keys(this.props.cards).map(this.renderExistingItems)}
               <ControlsWrap>
               </ControlsWrap>

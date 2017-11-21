@@ -121,7 +121,7 @@ class AddNewCard extends Component {
     })
 
     const ControlsWrap = glamorous.div ({
-      paddingTop: 40,
+      paddingTop: 0,
       paddingBottom: 10,
       paddingLeft: 0,
       paddingRight: 0,

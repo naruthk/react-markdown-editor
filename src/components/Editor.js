@@ -51,9 +51,7 @@ class Editor extends React.Component {
 
     const CardTitle = glamorous.h3 ({
       marginTop: 10,
-      marginBottom: 10,
-      paddingBottom: 10,
-      borderBottom: '1px solid #CCC'
+      paddingBottom: 5
     })
 
     const NotesContent = glamorous.div({
@@ -70,6 +68,8 @@ class Editor extends React.Component {
         <div className="text-center">
           <div className="margin-t-60"></div>
           <img src={AnalyticsIcon} />
+          <div className="margin-t-20"></div>
+          <p><i>"By failing to prepare, you are preparing to fail."</i></p>
         </div>
       )
     }
@@ -85,6 +85,8 @@ class Editor extends React.Component {
             <UpdateButton><a href="#">Update</a></UpdateButton>
           </div>
         </div>
+        <p className="text-right"><small><strong>Language:</strong> {this.props.cardMode}&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Created</strong> {RelativeDate(this.props.cardDate)}</small></p>
+        <hr/>
         <div className="margin-t-20"></div>
         <AceEditor
           mode={this.props.cardMode}
@@ -111,10 +113,8 @@ class Editor extends React.Component {
         <NotesContent>
           <Markdown source={this.props.cardNotes} />
         </NotesContent>
-        <p>Link: <i><a href={this.props.cardVideo} title={this.props.cardTitle}>{this.props.cardVideo}</a></i></p>
+        <p><strong>Link:</strong> <i><a href={this.props.cardVideo} title={this.props.cardTitle}>{this.props.cardVideo}</a></i></p>
         <div className="margin-t-60"></div>
-        <hr />
-        <p>Created {RelativeDate(this.props.cardDate)}</p>
       </div>
     )
   }

@@ -110,3 +110,6 @@ footer {
     transition: color 0.5s ease-out; }
     footer a:hover {
       color: #e87722 !important; }
+
+#dashboard {
+  margin: 50px; }

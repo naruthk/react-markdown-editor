@@ -7,6 +7,7 @@ import CardRenderer from './CardRenderer';
 import AddNewCard from './AddNewCard';
 import ReactModal from 'react-modal';
 import FontAwesome from 'react-fontawesome';
+import '../css/main.css';
 
 class Dashboard extends React.Component {
 
@@ -74,7 +75,7 @@ class Dashboard extends React.Component {
 
       <div>
         <Header handleOpenModal={this.handleOpenModal} />
-        <div className="container">
+        <div id="dashboard">
           <div className="margin-t-20"></div>
           {CardRender}
         </div>
