@@ -52,15 +52,18 @@ class Dashboard extends React.Component {
   }
 
   editCard(key, item) {
-
+    alert("Feature coming soon! Sorry!");
   }
 
   // Delete a card (given a key of the particular card)
   removeCard(key) {
-    console.log(key)
-    const cards = { ...this.state.cards };
-    cards[key] = null;
-    this.setState({ cards });
+    let retVal = window.confirm("Are you sure you want to continue?");
+    if (retVal) {
+      const cards = { ...this.state.cards };
+      cards[key] = null;
+      this.setState({ cards });
+      return true;
+    }
   }
 
   // Toggle ReactModal for Adding a New Card

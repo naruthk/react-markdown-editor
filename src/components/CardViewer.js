@@ -55,7 +55,7 @@ class CardViewer extends React.Component {
     const NotesContent = glamorous.div({ marginBottom: 40 })
     const UpdateButton = glamorous.div ({ marginTop: 10})
 
-    if (this.props.cardCode === "" || this.props.cardMode === "") {
+    if (this.props.cards === null || this.props.cardCode === "" || this.props.cardMode === "") {
       return (
         <div className="container">
           <div className="margin-t-60"></div>
@@ -77,7 +77,7 @@ class CardViewer extends React.Component {
           </div>
           <div className="text-right col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <UpdateButton>
-              <span><small><strong>Language:</strong> {this.props.cardMode} | <strong>Created</strong> {RelativeDate(this.props.cardDate)}</small></span> | <a onClick={this.props.updateCurrentCard}>Update</a></UpdateButton>
+              <span><small><strong>Language:</strong> {this.props.cardMode} | <strong>Created</strong> {RelativeDate(this.props.cardDate)}</small></span></UpdateButton>
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import CardViewer from './CardViewer';
 import glamorous from 'glamorous';
+import FontAwesome from 'react-fontawesome';
 
 class CardsManagement extends React.Component {
 
@@ -46,7 +47,9 @@ class CardsManagement extends React.Component {
         <a onClick={(e) => this.setKeyForCurrentItem(item)}>
           <ListCard>
             <ListCardTitle>{item.title} <ListCardCodeMode>{item.mode}</ListCardCodeMode></ListCardTitle>
-            <div className="text-right"><a onClick={() => this.props.removeCard(key)}>X</a></div>
+            <div className="text-right">
+              <a onClick={() => this.props.editCard(key, item)}><FontAwesome name="cog" /></a> <a onClick={() => this.props.removeCard(key)}><FontAwesome name="window-close" /></a>
+            </div>
           </ListCard>
         </a>
       </div>
@@ -60,12 +63,7 @@ class CardsManagement extends React.Component {
       borderLeft: '5px solid #CCC', borderBottom: '2px solid #f9f9f9',
       marginBottom: 10 })
 
-    let RenderingCardsByKey = null;
-    if (Object.keys(this.props.cards).length === 0) {
-      RenderingCardsByKey = <p>You don't have any card</p>;
-    } else {
-      RenderingCardsByKey = Object.keys(this.props.cards).map(this.renderExistingItems);
-    }
+    let RenderingCardsByKey = (Object.keys(this.props.cards).length === 0) ? <p>You don't have any card</p> : Object.keys(this.props.cards).map(this.renderExistingItems);
 
     return (
       <div>
@@ -79,8 +77,7 @@ class CardsManagement extends React.Component {
               cardVideo={this.state.cardVideo}
               cardNotes={this.state.cardNotes} 
               cardDate={this.state.cardDate}
-              updateCurrentCard={this.updateCurrentCard}
-              removeCurrentCard={this.removeCurrentCard}
+              cards={this.props.cards}
             />
           </div>
           <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
