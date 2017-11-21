@@ -8,7 +8,7 @@
 
 #acecode-editor {
   width: 100%;
-  min-height: 600px !important; }
+  min-height: 50vh; }
 
 .control label {
   margin-right: 10px;

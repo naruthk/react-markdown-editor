@@ -1,6 +1,6 @@
 {
   "name": "website-naruthk-admin-console",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -28,18 +28,15 @@
   },
   "devDependencies": {
     "brace": "^0.10.0",
-    "codemirror": "^5.31.0",
     "firebase": "^4.6.2",
     "font-awesome": "^4.7.0",
     "github-markdown-css": "^2.9.0",
     "prop-types": "^15.6.0",
     "re-base": "^3.2.0",
     "react-ace": "^5.5.0",
-    "react-codemirror": "^1.0.0",
     "react-markdown": "^2.5.1",
     "react-modal": "^3.1.2",
     "react-router": "^4.2.0",
-    "react-youtube": "^7.5.0",
     "relative-date": "^1.1.3"
   }
 }

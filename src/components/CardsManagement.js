@@ -1,7 +1,5 @@
 import React from 'react';
-
 import CardViewer from './CardViewer';
-
 import glamorous from 'glamorous';
 
 class CardsManagement extends React.Component {
@@ -15,8 +13,6 @@ class CardsManagement extends React.Component {
     };
     this.renderExistingItems = this.renderExistingItems.bind(this);
     this.setKeyForCurrentItem = this.setKeyForCurrentItem.bind(this);
-    this.updateCurrentCard = this.updateCurrentCard.bind(this);
-    this.removeCurrentCard = this.removeCurrentCard.bind(this);
   }
 
   setKeyForCurrentItem(item) {
@@ -43,25 +39,18 @@ class CardsManagement extends React.Component {
       float: 'right', marginLeft: 10 })
     const ListCardTitle = glamorous.p ({
       fontWeight: 300, lineHeight: '18px', paddingTop: 10,
-      ':hover': { fontWeight: '600' }})
+      ':hover': { fontWeight: '400' }})
 
     return (
       <div key={key}>
         <a onClick={(e) => this.setKeyForCurrentItem(item)}>
           <ListCard>
             <ListCardTitle>{item.title} <ListCardCodeMode>{item.mode}</ListCardCodeMode></ListCardTitle>
+            <div className="text-right"><a onClick={() => this.props.removeCard(key)}>X</a></div>
           </ListCard>
         </a>
       </div>
     )
-  }
-
-  updateCurrentCard(item) {
-
-  }
-
-  removeCurrentCard(item) {
-
   }
 
   render() {
@@ -70,6 +59,13 @@ class CardsManagement extends React.Component {
       paddingLeft: 20, paddingBottom: 30,
       borderLeft: '5px solid #CCC', borderBottom: '2px solid #f9f9f9',
       marginBottom: 10 })
+
+    let RenderingCardsByKey = null;
+    if (Object.keys(this.props.cards).length === 0) {
+      RenderingCardsByKey = <p>You don't have any card</p>;
+    } else {
+      RenderingCardsByKey = Object.keys(this.props.cards).map(this.renderExistingItems);
+    }
 
     return (
       <div>
@@ -83,12 +79,14 @@ class CardsManagement extends React.Component {
               cardVideo={this.state.cardVideo}
               cardNotes={this.state.cardNotes} 
               cardDate={this.state.cardDate}
+              updateCurrentCard={this.updateCurrentCard}
+              removeCurrentCard={this.removeCurrentCard}
             />
           </div>
           <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
             <Aside>
               <h2>My <strong>Cards</strong></h2>
-              {Object.keys(this.props.cards).map(this.renderExistingItems)}
+              {RenderingCardsByKey}
             </Aside>
           </div>
         </div>

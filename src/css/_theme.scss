@@ -68,6 +68,11 @@ header {
 
 footer {
     margin: 50px 0 50px 0;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    background-color: #FFF;
     p {
         color: rgb(150, 150, 150);
         line-height: 20px;

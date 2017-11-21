@@ -31,8 +31,6 @@ const themes = [
   'twilight',
   'xcode',
   'textmate',
-  'solarized_dark',
-  'solarized_light',
   'terminal',
 ]
 
@@ -131,10 +129,10 @@ class AddCard extends Component {
     return (
       <div id="addCard">
         <div className="row">
-          <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <Heading>Add A New <strong>Code Card</strong></Heading>
           </div>
-          <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <ControlsWrap>
               <p className="control">
                 <label>Mode: </label>

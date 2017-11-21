@@ -26,6 +26,8 @@ class Dashboard extends React.Component {
       showModal: false
     }
     this.addCard = this.addCard.bind(this);
+    this.editCard = this.editCard.bind(this);
+    this.removeCard = this.removeCard.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
@@ -49,6 +51,18 @@ class Dashboard extends React.Component {
     this.setState({ cards });
   }
 
+  editCard(key, item) {
+
+  }
+
+  // Delete a card (given a key of the particular card)
+  removeCard(key) {
+    console.log(key)
+    const cards = { ...this.state.cards };
+    cards[key] = null;
+    this.setState({ cards });
+  }
+
   // Toggle ReactModal for Adding a New Card
   handleOpenModal() { this.setState({ showModal: true }); }
   handleCloseModal() { this.setState({ showModal: false }); }
@@ -63,41 +77,40 @@ class Dashboard extends React.Component {
       backgroundColor: '#999', padding: 10, margin: 10,
       color: '#FFF', ':hover': { backgroundColor: '#333' }
     })
+    
+    const ReactModalStyle = {
+      overlay: {
+        backgroundColor: '#f3f3f3',
+      },
+      content: {
+        color: 'black',
+        backgroundColor: '#f3f3f3',
+        border: '0'
+      }
+    }
 
     return (
       <div>
         <Header handleOpenModal={this.handleOpenModal} />
         <div id="dashboard">
           {/* Hide the dashboard if the user toggles open the Add New Card modal */}
-          {this.state.showModal ? <div></div> : <CardsManagement cards={this.state.cards} />}
+          {this.state.showModal ? <div></div> : <CardsManagement cards={this.state.cards} removeCard={this.removeCard} editCard={this.editCard} />}
         </div>
-        <Footer />
+        <div className="margin-t-60"></div>
         
         {/* ReactModal for Adding a New Card */}
-        <ReactModal 
-            isOpen={this.state.showModal}
-            contentLabel="Add new card"
-            style={{
-              overlay: {
-                backgroundColor: '#999'
-              },
-              content: {
-                color: 'black',
-                backgroundColor: '#f3f3f3'
-              }
-            }} >
-          {/* Inside the React Modal is the actual AddNewCard component */}
+        <ReactModal isOpen={this.state.showModal} contentLabel="Add new card" style={ReactModalStyle} >
           <WrapperAddNewCard><AddCard addItem={this.addCard} /></WrapperAddNewCard>
-          <div className="text-right margin-t-20">
+          <div className="margin-t-20"></div>
+          <div className="text-right">
             <CloseButton onClick={this.handleCloseModal}>
             <FontAwesome name="window-close" /> Close</CloseButton>
           </div>
+          <div className="margin-t-20"></div>
         </ReactModal>
-        
       </div>
     )
   }
-
 }
 
 export default Dashboard;

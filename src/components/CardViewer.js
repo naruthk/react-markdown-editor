@@ -51,67 +51,70 @@ class CardViewer extends React.Component {
 
   render() {
 
-    const CardTitle = glamorous.h3 ({ marginTop: 10, addingBottom: 5, fontSize: '22pt' })
+    const CardTitle = glamorous.h2 ({ marginTop: 10, paddingBottom: 5, fontSize: '24pt' })
     const NotesContent = glamorous.div({ marginBottom: 40 })
     const UpdateButton = glamorous.div ({ marginTop: 10})
 
     if (this.props.cardCode === "" || this.props.cardMode === "") {
       return (
-        <div className="text-center margin-t-60">
-          <img src={AnalyticsIcon} alt="Icon" />
-          <div className="margin-t-20"></div>
-          <p><i>Click on the Add Card link at the top to create a new card.</i></p>
+        <div className="container">
+          <div className="margin-t-60"></div>
+          <div className="text-center">
+            <img src={AnalyticsIcon} alt="Icon" />
+            <div className="margin-t-20"></div>
+            <p><i>Click on the Add Card link at the top to create a new card.</i></p>
+          </div>
+          <div className="margin-t-60"></div>
         </div>
       )
     }
 
     return (
-      <div>
+      <div className="container">
         <div className="row">
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <CardTitle>{this.props.cardTitle}</CardTitle>
           </div>
           <div className="text-right col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <UpdateButton><button>Update</button> <button>Remove</button> <span><small><strong>Language:</strong> {this.props.cardMode} | <strong>Created</strong> {RelativeDate(this.props.cardDate)}</small></span></UpdateButton>
+            <UpdateButton>
+              <span><small><strong>Language:</strong> {this.props.cardMode} | <strong>Created</strong> {RelativeDate(this.props.cardDate)}</small></span> | <a onClick={this.props.updateCurrentCard}>Update</a></UpdateButton>
           </div>
         </div>
 
         <hr/>
+        <div classNmae="markdown-body">
+          <p><strong>Source:</strong> <i><a href={this.props.cardVideo} target="_blank" title={this.props.cardTitle}>{this.props.cardVideo}</a></i></p>
+        </div>
+
         <div className="margin-t-20"></div>
 
-        <div className="row">
-          <div className="col-sm-12 col-md-12 col-lg-8">
-            <AceEditor
-              mode={this.props.cardMode}
-              theme='github'
-              className='ace-textarea'
-              name="acecode-editor"
-              value={this.props.cardCode}
-              setOptions={{
-                className: 'ace-textarea',
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
-                readOnly: true,
-                showLineNumbers: true,
-                wrap: true,
-                fontSize: 14,
-                showPrintMargin: false,
-                showGutter: true,
-                highlightActiveLine: false,
-                tabSize: 2,
-                width: '100%',
-                height: '1000px'
-              }
-            } />
-            <div className="margin-t-60"></div>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-4">
-            <div class="markdown-body">
-              <NotesContent><Markdown source={this.props.cardNotes} /></NotesContent>
-              <p><strong>Link:</strong> <i><a href={this.props.cardVideo} title={this.props.cardTitle}>{this.props.cardVideo}</a></i></p>
-            </div>
-          </div>
+        <AceEditor
+          mode={this.props.cardMode}
+          theme='github'
+          className='ace-textarea'
+          name="acecode-editor"
+          value={this.props.cardCode}
+          setOptions={{
+            className: 'ace-textarea',
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            enableSnippets: true,
+            readOnly: true,
+            showLineNumbers: true,
+            wrap: true,
+            fontSize: 14,
+            showPrintMargin: false,
+            showGutter: true,
+            highlightActiveLine: false,
+            tabSize: 2,
+            width: '100%',
+            height: '1000px'
+          }
+        } />
+
+        <div className="margin-t-60"></div>
+        <div className="markdown-body">
+          <NotesContent><Markdown source={this.props.cardNotes} /></NotesContent>
         </div>
         <div className="margin-t-20"></div>
       </div>

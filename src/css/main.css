@@ -45,6 +45,10 @@ body {
 .margin-t-60 {
   height: 60px; }
 
+a {
+  cursor: pointer !important;
+  text-decoration: none; }
+
 .global-wrap {
   padding: 60px; }
 
@@ -101,7 +105,12 @@ header {
           vertical-align: middle; } }
 
 footer {
-  margin: 50px 0 50px 0; }
+  margin: 50px 0 50px 0;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #FFF; }
   footer p {
     color: #969696;
     line-height: 20px; }
