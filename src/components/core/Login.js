@@ -21,7 +21,7 @@ class Login extends React.Component {
     this.sessionLogout = this.sessionLogout.bind(this);
 
     this.state = {
-      uid: 'KrLCboBJdHaFLHCXsOLXRd5W42F3'
+      uid: 'gCn5IH311wQ9dlI3A4h4WNTib8r1'
     }
 
   }

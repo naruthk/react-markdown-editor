@@ -10,7 +10,6 @@ import AddCard from './AddCard';
 
 // Additional
 import ReactModal from 'react-modal';
-import glamorous from 'glamorous';
 import FontAwesome from 'react-fontawesome';
 
 class Dashboard extends React.Component {
@@ -25,12 +24,16 @@ class Dashboard extends React.Component {
       cards: {},
       showModal: false
     }
+
     this.addCard = this.addCard.bind(this);
-    this.editCard = this.editCard.bind(this);
     this.removeCard = this.removeCard.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
+
+  // Toggle ReactModal for Adding a New Card
+  handleOpenModal() { this.setState({ showModal: true }); }
+  handleCloseModal() { this.setState({ showModal: false }); }
 
   componentWillMount() {
     this.ref = base.syncState(`${this.props.data.uid}`, {
@@ -51,10 +54,6 @@ class Dashboard extends React.Component {
     this.setState({ cards });
   }
 
-  editCard(key, item) {
-    alert("Feature coming soon! Sorry!");
-  }
-
   // Delete a card (given a key of the particular card)
   removeCard(key) {
     let retVal = window.confirm("Are you sure you want to continue?");
@@ -66,21 +65,10 @@ class Dashboard extends React.Component {
     }
   }
 
-  // Toggle ReactModal for Adding a New Card
-  handleOpenModal() { this.setState({ showModal: true }); }
-  handleCloseModal() { this.setState({ showModal: false }); }
-
   render() {
 
-    const WrapperAddNewCard = glamorous.div ({
-      margin: 20, backgroundColor: '#f3f3f3'
-    })
+    const CardsManagementRenderer = this.state.showModal ? <div></div> : <CardsManagement cards={this.state.cards} addCard={this.addCard} removeCard={this.removeCard} /> 
 
-    const CloseButton = glamorous.button ({
-      backgroundColor: '#999', padding: 10, margin: 10,
-      color: '#FFF', ':hover': { backgroundColor: '#333' }
-    })
-    
     const ReactModalStyle = {
       overlay: {
         backgroundColor: '#f3f3f3',
@@ -95,22 +83,16 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Header handleOpenModal={this.handleOpenModal} />
-        <div id="dashboard">
-          {/* Hide the dashboard if the user toggles open the Add New Card modal */}
-          {this.state.showModal ? <div></div> : <CardsManagement cards={this.state.cards} removeCard={this.removeCard} editCard={this.editCard} />}
-        </div>
-        <div className="margin-t-60"></div>
-        
-        {/* ReactModal for Adding a New Card */}
+        {CardsManagementRenderer}
         <ReactModal isOpen={this.state.showModal} contentLabel="Add new card" style={ReactModalStyle} >
-          <WrapperAddNewCard><AddCard addItem={this.addCard} /></WrapperAddNewCard>
+          <AddCard addCard={this.addCard} />
           <div className="margin-t-20"></div>
           <div className="text-right">
-            <CloseButton onClick={this.handleCloseModal}>
-            <FontAwesome name="window-close" /> Close</CloseButton>
+            <button onClick={this.handleCloseModal}><FontAwesome name="window-close" /> Close</button>
           </div>
           <div className="margin-t-20"></div>
         </ReactModal>
+        <Footer />
       </div>
     )
   }

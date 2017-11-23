@@ -1,91 +1,74 @@
 import React from 'react';
-import CardViewer from './CardViewer';
+import ExistingCardViewer from './ExistingCardViewer';
 import glamorous from 'glamorous';
-import FontAwesome from 'react-fontawesome';
 
 class CardsManagement extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      cardCode: "",
-      cardMode: "",
-      cardNotes: "",
-    };
-    this.renderExistingItems = this.renderExistingItems.bind(this);
-    this.setKeyForCurrentItem = this.setKeyForCurrentItem.bind(this);
+      isScrolling: false
+    }
+
+    this.setZIndexOfTextAreas = this.setZIndexOfTextAreas.bind(this);
+    this.renderExistingCards = this.renderExistingCards.bind(this);
+
+    // Because the AceCodeEditor's textarea will always be on top of our Header and
+    // GridRowTitles, we have to listen to the scroll action. Everytime the user
+    // scrolls the page up/down, we will lock the textarea from being able to scroll,
+    // and set its z-index to -1.
+    window.addEventListener('scroll', this.setZIndexOfTextAreas);
   }
 
-  setKeyForCurrentItem(item) {
-    this.setState({ 
-      cardCode: item.code,
-      cardMode: item.mode,
-      cardTheme: item.theme,
-      cardTitle: item.title,
-      cardVideo: item.video,
-      cardNotes: item.notes,
-      cardDate: item.timestamp
-    });
+  setZIndexOfTextAreas() {
+    console.log("im being scrolled!")
+    this.setState({
+      isScrolling: true
+    })
   }
 
-  renderExistingItems(key) {
-
+  renderExistingCards(key) {
     const item = this.props.cards[key]
-    const ListCard = glamorous.div ({
-      paddingTop: 3, paddingLeft: 10, paddingRight: 10, paddingBottom: 3,
-      margin: 0, marginBottom: 5, backgroundColor: '#f9f9f9',
-      border: '1px solid #f7f7f7', ':hover': { backgroundColor: '#e5e5e5' }})
-    const ListCardCodeMode = glamorous.span ({
-      color: '#999', fontSize: 14, fontWeight: 300, textTransform: 'uppercase',
-      float: 'right', marginLeft: 10 })
-    const ListCardTitle = glamorous.p ({
-      fontWeight: 300, lineHeight: '18px', paddingTop: 10,
-      ':hover': { fontWeight: '400' }})
-
     return (
       <div key={key}>
-        <a onClick={(e) => this.setKeyForCurrentItem(item)}>
-          <ListCard>
-            <ListCardTitle>{item.title} <ListCardCodeMode>{item.mode}</ListCardCodeMode></ListCardTitle>
-            <div className="text-right">
-              <a onClick={() => this.props.editCard(key, item)}><FontAwesome name="cog" /></a> <a onClick={() => this.props.removeCard(key)}><FontAwesome name="window-close" /></a>
-            </div>
-          </ListCard>
-        </a>
+        <ExistingCardViewer item={item} key={key} cards={this.props.cards} isScrolling={this.state.isScrolling} />
       </div>
     )
   }
 
   render() {
 
-    const Aside = glamorous.div ({
-      paddingLeft: 20, paddingBottom: 30,
-      borderLeft: '5px solid #CCC', borderBottom: '2px solid #f9f9f9',
-      marginBottom: 10 })
+    const HeaderRowStyle = glamorous.div({
+      backgroundColor: '#424242',
+      height: 40,
+      lineHeight: '40px',
+      color: '#FFFFFF',
+      position: 'fixed',
+      top: 60,
+      left: 0,
+      right: 0,
+      zIndex: 1
+    })
 
-    let RenderingCardsByKey = (Object.keys(this.props.cards).length === 0) ? <p>You don't have any card</p> : Object.keys(this.props.cards).map(this.renderExistingItems);
+    const HeaderTitle = glamorous.p({
+      textAlign: 'center',
+      color: '#FFF !important'
+    })
+
+    const HeaderGridRenderer =
+      <HeaderRowStyle className="row">
+        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4"><HeaderTitle>Code</HeaderTitle></div>
+        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4"><HeaderTitle>Notes (Markdown Style)</HeaderTitle></div>
+        <div className="hidden-xs hidden-sm col-md-4 col-lg-4"><HeaderTitle>Rendered Notes (GitHub Flavored)</HeaderTitle></div>
+      </HeaderRowStyle>
 
     return (
       <div>
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-            <CardViewer 
-              cardCode={this.state.cardCode} 
-              cardMode={this.state.cardMode} 
-              cardTheme={this.state.cardTheme}
-              cardTitle={this.state.cardTitle}
-              cardVideo={this.state.cardVideo}
-              cardNotes={this.state.cardNotes} 
-              cardDate={this.state.cardDate}
-              cards={this.props.cards}
-            />
-          </div>
-          <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <Aside>
-              <h2>My <strong>Cards</strong></h2>
-              {RenderingCardsByKey}
-            </Aside>
-          </div>
+        {HeaderGridRenderer}
+        <div id="EditorMarkdownLivePreviewScrollWrapper">
+          <section id="CardContent">
+            {Object.keys(this.props.cards).map(this.renderExistingCards)}
+          </section>
         </div>
       </div>
     )

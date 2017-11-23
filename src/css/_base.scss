@@ -53,3 +53,8 @@ a {
   cursor: pointer !important;
   text-decoration: none;
 }
+
+// Removes outlines on inputs, select, and textareas
+input, textarea, select {
+  outline: none !important;
+}

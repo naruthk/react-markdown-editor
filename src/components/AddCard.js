@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import glamorous from 'glamorous';
+import Markdown from 'react-markdown';
+import 'github-markdown-css';
 import 'brace/mode/jsx';
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
@@ -43,148 +45,127 @@ themes.forEach((theme) => {
   require(`brace/theme/${theme}`)
 })
 
-const defaultValue =
-  ``;
+const defaultValue = ``;
 
 class AddCard extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: defaultValue,
-      mode: 'java',
-      theme: 'cobalt'
+      aceEditorCode: defaultValue,
+      aceEditorMode: 'java',
+      aceEditorTheme: 'github',
+      markdownNotes: defaultValue
     };
-    this.setMode = this.setMode.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.setBoolean = this.setBoolean.bind(this);
-    this.setTheme = this.setTheme.bind(this);
+    this.setAceEditorMode = this.setAceEditorMode.bind(this);
+    this.setAceEditorTheme = this.setAceEditorTheme.bind(this);
+    this.onChangeAceEditor = this.onChangeAceEditor.bind(this);
+    this.onChangeTextArea = this.onChangeTextArea.bind(this);
   }
 
-  addItem(event) {
+  addCard(event) {
     event.preventDefault();
     const card = {
-      code: this.state.value,
-      mode: this.state.mode,
-      theme: this.state.theme,
-      title: this.title.value,
-      video: this.url.value,
-      notes: this.notes.value,
+      programmingCode: this.state.aceEditorCode,
+      programmingLanguage: this.state.aceEditorMode,
+      markdownNotes: this.notes.value,
       timestamp: Date.now()
     }
-    this.props.addItem(card);
+    this.props.addCard(card);
     this.cardForm.reset();
   }
 
-  onChange(newValue) {
+  onChangeAceEditor(val) {
     this.setState({
-      value: newValue
+      aceEditorCode: val
     })
   }
 
-  setMode(e) {
+  onChangeTextArea(event) {
     this.setState({
-      mode: e.target.value
+      markdownNotes: event.target.value
     })
   }
 
-  setTheme(e) {
+  setAceEditorMode(e) {
     this.setState({
-      theme: e.target.value
+      aceEditorMode: e.target.value
     })
   }
 
-  setBoolean(name, value) {
+  setAceEditorTheme(e) {
     this.setState({
-      [name]: value
+      aceEditorTheme: e.target.value
     })
   }
 
   render() {
 
-    const Heading = glamorous.h2 ({
-      paddingTop: 0,
-      paddingBottom: 10,
-      paddingLeft: 0,
-      paddingRight: 40
-    })
-
-    const Button = glamorous.button ({
-      padding: 10,
-      marginTop: 0,
-      marginBottom: 10,
-      width: '100%',
-      backgroundColor: '#000',
-      color: '#FFF'
-    })
-
-    const ControlsWrap = glamorous.div ({
-      paddingTop: 0,
-      paddingBottom: 10,
-      paddingLeft: 0,
-      paddingRight: 0,
-      textAlign: 'right'
+    const SubmitButton = glamorous.button ({
+      width: '160px',
+      backgroundColor: '#4f92ff',
+      color: '#fff',
+      fontWeight: 300,
+      height: 40
     })
 
     return (
-      <div id="addCard">
-        <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <Heading>Add A New <strong>Code Card</strong></Heading>
-          </div>
-          <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <ControlsWrap>
+      <div id="AddCardWrapper" className="row">
+        <form ref={(input) => this.cardForm = input} onSubmit={(e) => this.addCard(e)}>
+          <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+            <div id="editor">
+              <AceEditor
+                name="acecode-editor"
+                className='ace-textarea'
+                mode={this.state.aceEditorMode}
+                theme={this.state.aceEditorTheme}
+                onChange={this.onChangeAceEditor}
+                value={this.state.aceEditorCode}
+                setOptions={{
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true,
+                  enableSnippets: true,
+                  showLineNumbers: true,
+                  fontSize: 14,
+                  wrap: true,
+                  showPrintMargin: true,
+                  showGutter: true,
+                  highlightActiveLine: false,
+                  tabSize: 2,
+                  minLines: 10,
+                  width: '100%'
+                }} />
+            </div>
+            <div>
               <p className="control">
                 <label>Mode: </label>
                 <span className="select">
-                  <select className="optionsStyle" name="mode" onChange={this.setMode} value={this.state.mode}>
+                  <select className="optionsStyle" name="mode" onChange={this.setAceEditorMode} value={this.state.aceEditorMode}>
                     {languages.map((lang) => <option key={lang} value={lang}>{lang}</option>)}
                   </select>
                 </span>
-                
                 <label>Theme: </label>
                 <span className="select">
-                  <select name="Theme" className="optionsStyle" onChange={this.setTheme} value={this.state.theme}>
+                  <select name="Theme" className="optionsStyle" onChange={this.setAceEditorTheme} value={this.state.aceEditorTheme}>
                     {themes.map((lang) => <option key={lang} value={lang}>{lang}</option>)}
                   </select>
                 </span>
               </p>
-            </ControlsWrap>
+            </div>
           </div>
-        </div>
-        <form ref={(input) => this.cardForm = input} onSubmit={(e) => this.addItem(e)}>
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-              <div id="editor">
-                <AceEditor
-                  mode={this.state.mode}
-                  theme={this.state.theme}
-                  className='ace-textarea'
-                  name="acecode-editor"
-                  onChange={this.onChange}
-                  value={this.state.value}
-                  setOptions={{
-                    className: 'ace-textarea',
-                    enableBasicAutocompletion: true,
-                    enableLiveAutocompletion: true,
-                    enableSnippets: true,
-                    showLineNumbers: true,
-                    fontSize: 16,
-                    showPrintMargin: true,
-                    showGutter: true,
-                    highlightActiveLine: true,
-                    tabSize: 2,
-                    minLines: 20,
-                    width: '100%'
-                }} />
-              </div>
+          <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+            <textarea 
+              ref={(input) => this.notes = input} 
+              value={this.state.markdownNotes}
+              onChange={this.onChangeTextArea} 
+              rows="6"></textarea>
+            <SubmitButton type="submit">+ Add Item</SubmitButton>
+          </div>
+          <div className="hidden-xs hidden-sm col-md-4 col-lg-4">
+            <div className="MarkdownPreviewWrapper markdown-body">
+              <Markdown source={this.state.markdownNotes} />
             </div>
-            <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-              <input ref={(input) => this.title = input} type="text" placeholder="Title"></input>
-              <input ref={(input) => this.url = input} type="text" placeholder="URL to source (maybe a YT video)"></input>
-              <textarea ref={(input) => this.notes = input} placeholder="As markdown text, add some notes about this particular code / selected videos." rows="10"></textarea>
-              <Button type="submit">+ Add Item</Button>
-            </div>
+
           </div>
         </form>
       </div>
