@@ -9,7 +9,7 @@ class CardsManagement extends React.Component {
     this.state = {
       isScrolling: false
     }
-
+    this._timeout = null;
     this.setZIndexOfTextAreas = this.setZIndexOfTextAreas.bind(this);
     this.renderExistingCards = this.renderExistingCards.bind(this);
 
@@ -25,6 +25,20 @@ class CardsManagement extends React.Component {
     this.setState({
       isScrolling: true
     })
+    if (this._timeout) { //if there is already a timeout in process cancel it
+      clearTimeout(this._timeout);
+    }
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({
+        isScrolling: false
+      });
+    }, 300);
+    if (this.state.isScrolling !== true) {
+      this.setState({
+        isScrolling: true
+      });
+    }
   }
 
   renderExistingCards(key) {
