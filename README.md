@@ -1,7 +1,5 @@
-# ![](logo.png) Administrative Panel for Naruth Kongurai
+# Programming Note Cards
 
-Source code not available for the public.
+Currently a work-in-progress.
 
-## License
-
-Copyrighted 2017. MIT License.
+Technology: React, ES6, SCSS

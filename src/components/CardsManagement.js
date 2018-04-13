@@ -7,33 +7,38 @@ class CardsManagement extends React.Component {
   constructor() {
     super();
     this.state = {
-      isScrolling: false
+      isScrolling: false;
     }
     this._timeout = null;
     this.setZIndexOfTextAreas = this.setZIndexOfTextAreas.bind(this);
     this.renderExistingCards = this.renderExistingCards.bind(this);
 
-    // Because the AceCodeEditor's textarea will always be on top of our Header and
-    // GridRowTitles, we have to listen to the scroll action. Everytime the user
-    // scrolls the page up/down, we will lock the textarea from being able to scroll,
-    // and set its z-index to -1.
+    // Because the AceCodeEditor's textarea will always be on top of our Header 
+    // and GridRowTitles, we have to listen to the scroll action. Everytime the 
+    // user scrolls the page up/down, we will lock the textarea from being able 
+    // to scroll, and set its z-index to -1.
     window.addEventListener('scroll', this.setZIndexOfTextAreas);
   }
 
   setZIndexOfTextAreas() {
     console.log("im being scrolled!")
+
     this.setState({
       isScrolling: true
     })
-    if (this._timeout) { //if there is already a timeout in process cancel it
+
+    // If there is already a timeout in process cancel it
+    if (this._timeout) {
       clearTimeout(this._timeout);
     }
+
     this._timeout = setTimeout(() => {
       this._timeout = null;
       this.setState({
         isScrolling: false
       });
     }, 300);
+
     if (this.state.isScrolling !== true) {
       this.setState({
         isScrolling: true
@@ -86,8 +91,8 @@ class CardsManagement extends React.Component {
         </div>
       </div>
     )
-  }
 
+  }
 }
 
 export default CardsManagement;

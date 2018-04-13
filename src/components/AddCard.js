@@ -63,6 +63,8 @@ class AddCard extends Component {
     this.onChangeTextArea = this.onChangeTextArea.bind(this);
   }
 
+  // Adds a card containing the code content, the language used,
+  // any notes in Markdown, and time stamp value 
   addCard(event) {
     event.preventDefault();
     const card = {
